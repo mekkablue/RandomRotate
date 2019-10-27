@@ -74,12 +74,14 @@ class RandomRotate(FilterWithDialog):
 		self.menuName = Glyphs.localize({
 			'en': u'Random Rotate',
 			'de': u'Zufallsrotation',
+			'es': u'Rotación aleatoria',
 		})
 		
 		# Word on Run Button (default: Apply)
 		self.actionButtonLabel = Glyphs.localize({
 			'en': u'Rotate',
 			'de': u'Rotieren',
+			'es': u'Rotar',
 		})
 		
 		# Load dialog from .nib (without .extension)
