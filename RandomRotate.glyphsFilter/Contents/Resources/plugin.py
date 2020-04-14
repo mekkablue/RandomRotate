@@ -1,4 +1,5 @@
 # encoding: utf-8
+from __future__ import division, print_function, unicode_literals
 
 ###########################################################################################################
 #
@@ -20,6 +21,7 @@ from random import random
 from GlyphsApp import *
 from GlyphsApp.plugins import *
 
+@objc.python_method
 def centerOfRect(rect):
 	"""
 	Returns the center of NSRect rect as an NSPoint.
@@ -28,6 +30,7 @@ def centerOfRect(rect):
 	y = rect.origin.y + rect.size.height * 0.5
 	return NSPoint(x,y)
 
+@objc.python_method
 def transform(shiftX=0.0, shiftY=0.0, rotate=0.0, skew=0.0, scale=1.0):
 	"""
 	Returns an NSAffineTransform object for transforming layers.
@@ -63,31 +66,31 @@ def transform(shiftX=0.0, shiftY=0.0, rotate=0.0, skew=0.0, scale=1.0):
 class RandomRotate(FilterWithDialog):
 	
 	# Definitions of IBOutlets
-	
-	# The NSView object from the User Interface. Keep this here!
 	dialog = objc.IBOutlet()
-	
-	# Text field in dialog
 	maxAngleField = objc.IBOutlet()
 	
+	@objc.python_method
 	def settings(self):
 		self.menuName = Glyphs.localize({
-			'en': u'Random Rotate',
-			'de': u'Zufallsrotation',
-			'es': u'Rotación aleatoria',
+			'en': 'Random Rotate',
+			'de': 'Zufallsrotation',
+			'es': 'Rotación aleatoria',
+			'fr': 'Rotation aléatoire',
 		})
 		
 		# Word on Run Button (default: Apply)
 		self.actionButtonLabel = Glyphs.localize({
-			'en': u'Rotate',
-			'de': u'Rotieren',
-			'es': u'Rotar',
+			'en': 'Rotate',
+			'de': 'Rotieren',
+			'es': 'Rotar',
+			'fr': 'Tourner',
 		})
 		
 		# Load dialog from .nib (without .extension)
 		self.loadNib('IBdialog', __file__)
 	
 	# On dialog show
+	@objc.python_method
 	def start(self):
 		
 		# Set default value
@@ -110,12 +113,12 @@ class RandomRotate(FilterWithDialog):
 		self.update()
 	
 	# Actual filter
+	@objc.python_method
 	def filter(self, layer, inEditView, customParameters):
 		
 		# Called on font export, get value from customParameters
-		if customParameters.has_key('maxAngle'):
+		if 'maxAngle' in customParameters:
 			maxAngle = customParameters['maxAngle']
-		
 		# Called through UI, use stored value
 		else:
 			maxAngle = float(Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'])
@@ -127,9 +130,11 @@ class RandomRotate(FilterWithDialog):
 		rotateLayerAroundItsCenter.appendTransform_( transform(shiftX=centerPoint.x, shiftY=centerPoint.y) )
 		layer.transform_checkForSelection_doComponents_( rotateLayerAroundItsCenter, False, True )
 	
+	@objc.python_method
 	def generateCustomParameter( self ):
 		return "%s; maxAngle:%s;" % (self.__class__.__name__, Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'] )
 	
+	@objc.python_method
 	def __file__(self):
 		"""Please leave this method unchanged"""
 		return __file__
