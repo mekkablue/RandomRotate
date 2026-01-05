@@ -21,6 +21,7 @@ from random import random
 from GlyphsApp import *
 from GlyphsApp.plugins import *
 
+
 @objc.python_method
 def centerOfRect(rect):
 	"""
@@ -30,8 +31,9 @@ def centerOfRect(rect):
 	y = rect.origin.y + rect.size.height * 0.5
 	return NSPoint(x,y)
 
+
 @objc.python_method
-def transform(shiftX=0.0, shiftY=0.0, rotate=0.0, skew=0.0, scale=1.0):
+def transform(shiftX=0.0, shiftY=0.0, rotate=0.0):
 	"""
 	Returns an NSAffineTransform object for transforming layers.
 	Apply an NSAffineTransform t object like this:
@@ -48,18 +50,8 @@ def transform(shiftX=0.0, shiftY=0.0, rotate=0.0, skew=0.0, scale=1.0):
 	myTransform = NSAffineTransform.transform()
 	if rotate:
 		myTransform.rotateByDegrees_(rotate)
-	if scale != 1.0:
-		myTransform.scaleBy_(scale)
 	if not (shiftX == 0.0 and shiftY == 0.0):
 		myTransform.translateXBy_yBy_(shiftX,shiftY)
-	if skew:
-		skewStruct = NSAffineTransformStruct()
-		skewStruct.m11 = 1.0
-		skewStruct.m22 = 1.0
-		skewStruct.m21 = tan(radians(skew))
-		skewTransform = NSAffineTransform.transform()
-		skewTransform.setTransformStruct_(skewStruct)
-		myTransform.appendTransform_(skewTransform)
 	return myTransform
 
 
@@ -68,7 +60,18 @@ class RandomRotate(FilterWithDialog):
 	# Definitions of IBOutlets
 	dialog = objc.IBOutlet()
 	maxAngleField = objc.IBOutlet()
-	
+
+
+	@objc.python_method
+	def prefDomain(self, prefName):
+		return f'com.mekkablue.RandomRotate.{prefName}'
+
+
+	@objc.python_method
+	def pref(self, prefName):
+		return Glyphs.defaults[self.prefDomain(prefName)]
+
+
 	@objc.python_method
 	def settings(self):
 		self.menuName = Glyphs.localize({
@@ -88,30 +91,33 @@ class RandomRotate(FilterWithDialog):
 		
 		# Load dialog from .nib (without .extension)
 		self.loadNib('IBdialog', __file__)
-	
+
+
 	# On dialog show
 	@objc.python_method
 	def start(self):
 		
 		# Set default value
-		Glyphs.registerDefault('com.mekkablue.RandomRotate.maxAngle', 15.0)
-		if Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'] == "GlyphsToolHand": # circumvent bug in API
-			Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'] = 15.0
+		Glyphs.registerDefault(self.prefDomain('maxAngle'), 15.0)
+		if self.pref('maxAngle') == "GlyphsToolHand": # circumvent bug in API
+			self.pref('maxAngle') = 15.0
 		
 		# Set value of text field
-		self.maxAngleField.setStringValue_(Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'])
+		self.maxAngleField.setStringValue_(self.pref('maxAngle'))
 		
 		# Set focus to text field
 		self.maxAngleField.becomeFirstResponder()
-		
+
+
 	# Action triggered by UI
 	@objc.IBAction
-	def setMaxAngle_( self, sender ):
+	def setMaxAngle_(self, sender):
 		# Store value coming in from dialog
-		Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'] = sender.floatValue()
+		self.pref('maxAngle') = sender.floatValue()
 		# Trigger redraw
 		self.update()
-	
+
+
 	# Actual filter
 	@objc.python_method
 	def filter(self, layer, inEditView, customParameters):
@@ -119,21 +125,28 @@ class RandomRotate(FilterWithDialog):
 		# Called on font export, get value from customParameters
 		if 'maxAngle' in customParameters:
 			maxAngle = customParameters['maxAngle']
+
 		# Called through UI, use stored value
+		elif inEditView:
+			maxAngle = float(self.pref('maxAngle') or 15)
+
+		# fallback to default
 		else:
-			maxAngle = float(Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'])
+			maxAngle = 15.0
 		
-		rotationAngle = -maxAngle + 2*maxAngle*random()
+		rotationAngle = -maxAngle + 2 * maxAngle * random()
 		centerPoint = centerOfRect(layer.bounds)
 		rotateLayerAroundItsCenter = transform(shiftX=-centerPoint.x, shiftY=-centerPoint.y)
-		rotateLayerAroundItsCenter.appendTransform_( transform(rotate=rotationAngle) )
-		rotateLayerAroundItsCenter.appendTransform_( transform(shiftX=centerPoint.x, shiftY=centerPoint.y) )
-		layer.transform_checkForSelection_doComponents_( rotateLayerAroundItsCenter, False, True )
-	
+		rotateLayerAroundItsCenter.appendTransform_(transform(rotate=rotationAngle))
+		rotateLayerAroundItsCenter.appendTransform_(transform(shiftX=centerPoint.x, shiftY=centerPoint.y))
+		layer.transform_checkForSelection_doComponents_(rotateLayerAroundItsCenter, False, True)
+
+
 	@objc.python_method
-	def generateCustomParameter( self ):
-		return "%s; maxAngle:%s;" % (self.__class__.__name__, Glyphs.defaults['com.mekkablue.RandomRotate.maxAngle'] )
-	
+	def generateCustomParameter(self):
+		return "%s; maxAngle: %s;" % (self.__class__.__name__, self.pref('maxAngle'))
+
+
 	@objc.python_method
 	def __file__(self):
 		"""Please leave this method unchanged"""
