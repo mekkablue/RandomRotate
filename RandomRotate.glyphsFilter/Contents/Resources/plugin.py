@@ -65,11 +65,13 @@ class RandomRotate(FilterWithDialog):
 	def prefDomain(self, prefName):
 		return f'com.mekkablue.RandomRotate.{prefName}'
 
-
 	@objc.python_method
 	def pref(self, prefName):
 		return Glyphs.defaults[self.prefDomain(prefName)]
 
+	@objc.python_method
+	def setPref(self, prefName, value):
+		Glyphs.defaults[self.prefDomain(prefName)] = value
 
 	@objc.python_method
 	def settings(self):
@@ -98,7 +100,7 @@ class RandomRotate(FilterWithDialog):
 		# Set default value
 		Glyphs.registerDefault(self.prefDomain('maxAngle'), 15.0)
 		if self.pref('maxAngle') == "GlyphsToolHand":  # circumvent bug in API
-			Glyphs.defaults[self.prefDomain('maxAngle')] = 15.0
+			self.setPref('maxAngle', 15.0)
 
 		# Set value of text field
 		self.maxAngleField.setStringValue_(self.pref('maxAngle'))
@@ -110,7 +112,7 @@ class RandomRotate(FilterWithDialog):
 	@objc.IBAction
 	def setMaxAngle_(self, sender):
 		# Store value coming in from dialog
-		Glyphs.defaults[self.prefDomain('maxAngle')] = 15.0
+		self.setPref('maxAngle', sender.floatValue() or 15.0)
 		# Trigger redraw
 		self.update()
 
@@ -137,11 +139,9 @@ class RandomRotate(FilterWithDialog):
 		rotateLayerAroundItsCenter.appendTransform_(transform(shiftX=centerPoint.x, shiftY=centerPoint.y))
 		layer.transform_checkForSelection_doComponents_(rotateLayerAroundItsCenter, False, True)
 
-
 	@objc.python_method
 	def generateCustomParameter(self):
 		return "%s; maxAngle: %s;" % (self.__class__.__name__, self.pref('maxAngle'))
-
 
 	@objc.python_method
 	def __file__(self):
