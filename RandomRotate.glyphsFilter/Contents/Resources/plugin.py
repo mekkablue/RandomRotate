@@ -98,7 +98,7 @@ class RandomRotate(FilterWithDialog):
 		# Set default value
 		Glyphs.registerDefault(self.prefDomain('maxAngle'), 15.0)
 		if self.pref('maxAngle') == "GlyphsToolHand":  # circumvent bug in API
-			self.pref('maxAngle') = 15.0
+			Glyphs.defaults[self.prefDomain('maxAngle')] = 15.0
 
 		# Set value of text field
 		self.maxAngleField.setStringValue_(self.pref('maxAngle'))
@@ -110,7 +110,7 @@ class RandomRotate(FilterWithDialog):
 	@objc.IBAction
 	def setMaxAngle_(self, sender):
 		# Store value coming in from dialog
-		self.pref('maxAngle') = 15.0
+		Glyphs.defaults[self.prefDomain('maxAngle')] = 15.0
 		# Trigger redraw
 		self.update()
 
