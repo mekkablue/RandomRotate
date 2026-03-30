@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1000001000000000000A101 /* RandomRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1000010000000000000A101 /* RandomRotate.m */; };
+		A1000002000000000000A101 /* IBdialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1000011000000000000A101 /* IBdialog.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A1000010000000000000A101 /* RandomRotate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomRotate.m; sourceTree = "<group>"; };
+		A1000011000000000000A101 /* IBdialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IBdialog.xib; sourceTree = "<group>"; };
+		A1000012000000000000A101 /* RandomRotate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomRotate.h; sourceTree = "<group>"; };
+		A1000013000000000000A101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1000020000000000000A101 /* RandomRotate.glyphsFilter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomRotate.glyphsFilter; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1000030000000000000A101 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1000040000000000000A101 /* RandomRotate */ = {
+			isa = PBXGroup;
+			children = (
+				A1000012000000000000A101 /* RandomRotate.h */,
+				A1000010000000000000A101 /* RandomRotate.m */,
+				A1000011000000000000A101 /* IBdialog.xib */,
+				A1000013000000000000A101 /* Info.plist */,
+			);
+			path = RandomRotate;
+			sourceTree = "<group>";
+		};
+		A1000041000000000000A101 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1000020000000000000A101 /* RandomRotate.glyphsFilter */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1000042000000000000A101 /* mainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				A1000040000000000000A101 /* RandomRotate */,
+				A1000041000000000000A101 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1000050000000000000A101 /* RandomRotate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1000060000000000000A101 /* Build configuration list for PBXNativeTarget "RandomRotate" */;
+			buildPhases = (
+				A1000030000000000000A101 /* Frameworks */,
+				A1000031000000000000A101 /* Sources */,
+				A1000032000000000000A101 /* Resources */,
+				A1000033000000000000A101 /* Install into Glyphs 3 Plugins */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RandomRotate;
+			productName = RandomRotate;
+			productReference = A1000020000000000000A101 /* RandomRotate.glyphsFilter */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A100FFFF000000000000A101 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A1000050000000000000A101 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A1000061000000000000A101 /* Build configuration list for PBXProject "RandomRotate" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1000042000000000000A101;
+			productRefGroup = A1000041000000000000A101 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1000050000000000000A101 /* RandomRotate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1000032000000000000A101 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000002000000000000A101 /* IBdialog.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A1000033000000000000A101 /* Install into Glyphs 3 Plugins */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Install into Glyphs 3 Plugins";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nDEST=\"$HOME/Library/Application Support/Glyphs 3/Plugins/$WRAPPER_NAME\"\nrsync -a --delete \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/\" \"$DEST/\"\necho \"Installed $WRAPPER_NAME to $DEST\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1000031000000000000A101 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001000000000000A101 /* RandomRotate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1000070000000000000A101 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A1000071000000000000A101 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A1000072000000000000A101 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/..";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Glyphs 3.app/Contents/Frameworks",
+				);
+				INFOPLIST_FILE = RandomRotate/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Glyphs 3/Plugins";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-undefined",
+					"dynamic_lookup",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mekkablue.RandomRotate";
+				PRODUCT_NAME = RandomRotate;
+				WRAPPER_EXTENSION = glyphsFilter;
+			};
+			name = Debug;
+		};
+		A1000073000000000000A101 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/..";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Glyphs 3.app/Contents/Frameworks",
+				);
+				INFOPLIST_FILE = RandomRotate/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Glyphs 3/Plugins";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-undefined",
+					"dynamic_lookup",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mekkablue.RandomRotate";
+				PRODUCT_NAME = RandomRotate;
+				WRAPPER_EXTENSION = glyphsFilter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1000060000000000000A101 /* Build configuration list for PBXNativeTarget "RandomRotate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000072000000000000A101 /* Debug */,
+				A1000073000000000000A101 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1000061000000000000A101 /* Build configuration list for PBXProject "RandomRotate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000070000000000000A101 /* Debug */,
+				A1000071000000000000A101 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = A100FFFF000000000000A101 /* Project object */;
+}
