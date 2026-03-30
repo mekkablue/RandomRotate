@@ -49,7 +49,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A1000042000000000000A101 /* mainGroup */ = {
+		A1000042000000000000A101 = {
 			isa = PBXGroup;
 			children = (
 				A1000040000000000000A101 /* RandomRotate */,
@@ -271,16 +271,16 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Applications/Glyphs 3.app/Contents/Frameworks",
+					"\"/Applications/Glyphs 3.app/Contents/Frameworks\"",
 				);
 				INFOPLIST_FILE = RandomRotate/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Glyphs 3/Plugins";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-undefined",
-					"dynamic_lookup",
+					dynamic_lookup,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mekkablue.RandomRotate";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mekkablue.RandomRotate;
 				PRODUCT_NAME = RandomRotate;
 				WRAPPER_EXTENSION = glyphsFilter;
 			};
@@ -294,16 +294,16 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Applications/Glyphs 3.app/Contents/Frameworks",
+					"\"/Applications/Glyphs 3.app/Contents/Frameworks\"",
 				);
 				INFOPLIST_FILE = RandomRotate/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Glyphs 3/Plugins";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-undefined",
-					"dynamic_lookup",
+					dynamic_lookup,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mekkablue.RandomRotate";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mekkablue.RandomRotate;
 				PRODUCT_NAME = RandomRotate;
 				WRAPPER_EXTENSION = glyphsFilter;
 			};
@@ -331,7 +331,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
 	};
 	rootObject = A100FFFF000000000000A101 /* Project object */;
 }

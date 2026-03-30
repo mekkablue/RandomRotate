@@ -13,6 +13,19 @@
 @implementation RandomRotate
 
 // ---------------------------------------------------------------------------
+#pragma mark - Initialisation
+// ---------------------------------------------------------------------------
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // Load the NIB in init so _view is set before Glyphs inspects it.
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"IBdialog" owner:self topLevelObjects:nil];
+    }
+    return self;
+}
+
+// ---------------------------------------------------------------------------
 #pragma mark - GSFilterPlugin protocol
 // ---------------------------------------------------------------------------
 
@@ -30,13 +43,6 @@
 
 - (nullable NSString *)keyEquivalent {
     return nil;
-}
-
-// Load the dialog NIB; sets the `dialog` outlet (→ _view in GSFilterPlugin)
-// that the framework checks to decide whether to show the filter dialog.
-- (void)loadPlugin {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    [bundle loadNibNamed:@"IBdialog" owner:self topLevelObjects:nil];
 }
 
 // Called just before the dialog appears; restore stored values into the UI.
@@ -64,17 +70,18 @@
         GSLayer *shadowLayer = _shadowLayers[k];
         GSLayer *layer       = _layers[k];
         // Restore layer to its pre-filter state from the shadow copy.
-        layer.shapes = [[NSMutableArray alloc] initWithArray:shadowLayer.shapes copyItems:YES];
+        [layer getCopyOfContentFromLayer:shadowLayer doSelection:_checkSelection];
         [self rotateLayer:layer maxAngle:maxAngle];
     }
     [super process:nil];
 }
 
 // Export / batch entry point (called per layer from Custom Parameters).
-- (void)processLayer:(GSLayer *)layer withArguments:(NSDictionary *)arguments {
+// arguments[0] is the filter name; arguments[1] is the maxAngle value.
+- (void)processLayer:(GSLayer *)layer withArguments:(NSArray *)arguments {
     CGFloat maxAngle = kDefaultMaxAngle;
-    if (arguments[@"maxAngle"]) {
-        maxAngle = [arguments[@"maxAngle"] doubleValue];
+    if (arguments.count > 1) {
+        maxAngle = [arguments[1] doubleValue];
     } else {
         CGFloat stored = [[NSUserDefaults standardUserDefaults] doubleForKey:kMaxAngleKey];
         if (stored > 0.0) {
