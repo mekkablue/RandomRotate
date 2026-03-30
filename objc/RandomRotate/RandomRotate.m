@@ -56,6 +56,7 @@
         maxAngle = kDefaultMaxAngle;
     }
     [self.maxAngleField setDoubleValue:maxAngle];
+    [self process:nil];
     return nil;
 }
 
@@ -128,11 +129,14 @@
     CGFloat cx     = NSMidX(bounds);
     CGFloat cy     = NSMidY(bounds);
 
-    // Build: translate-to-origin → rotate → translate-back.
+    // Build rotation around (cx, cy).
+    // NSAffineTransform right-multiplies each append, so the last call executes
+    // first when the transform is applied to a point.  Correct sequence:
+    //   translate back → rotate → translate to origin
     NSAffineTransform *t = [NSAffineTransform transform];
-    [t translateXBy:-cx yBy:-cy];
-    [t rotateByDegrees:angle];
     [t translateXBy:cx yBy:cy];
+    [t rotateByDegrees:angle];
+    [t translateXBy:-cx yBy:-cy];
 
     [layer transform:t checkForSelection:NO doComponents:YES];
 }
