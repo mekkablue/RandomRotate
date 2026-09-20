@@ -12,6 +12,8 @@ Use the gear menu in the lower left corner to copy a custom parameter with the c
 RandomRotate; maxAngle:40.0; exclude: a,b,c,adieresis
 ```
 
+Add the parameter as a *Filter* custom parameter. If you leave out `maxAngle`, the filter falls back to the angle you last set in the dialog, or 15 degrees.
+
 ### Installation
 
 1. In *Window > Plugin Manager,* look for *RandomRotate.*
@@ -20,7 +22,9 @@ RandomRotate; maxAngle:40.0; exclude: a,b,c,adieresis
 
 ### Requirements
 
-The plugin works in Glyphs 2.5 in High Sierra. I can only test it in current app and OS versions, and perhaps it works on earlier versions too.
+The plugin is built for Glyphs 4. I can only test it in current app and OS versions, and perhaps it works on earlier versions too.
+
+The Objective-C sources live in `objc/`; the project expects Glyphs 4 in `/Applications/Glyphs 4.app` (override the `GLYPHS_APP_PATH` build setting if yours is elsewhere) and builds `RandomRotate.glyphsFilter` straight into the repository root. A pure Python version of the same filter is kept in `python/`.
 
 ### License
 

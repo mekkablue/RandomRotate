@@ -2,8 +2,9 @@
 // Randomly rotates each glyph layer around its bounding-box center.
 
 #import <Cocoa/Cocoa.h>
-#import <GlyphsCore/GSFilterPlugin.h>
-#import <GlyphsCore/GSLayer.h>
+// In Glyphs 4, GSFilterPlugin lives in the GlyphsApp framework.
+// (In Glyphs 3 it used to be <GlyphsCore/GSFilterPlugin.h>.)
+#import <GlyphsApp/GSFilterPlugin.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
