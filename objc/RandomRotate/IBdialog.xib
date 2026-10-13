@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="RandomRotate">
             <connections>
-                <outlet property="view" destination="1" id="kzC-yw-bol"/>
+                <outlet property="_view" destination="1" id="kzC-yw-bol"/>
                 <outlet property="maxAngleField" destination="vfg-c5-0Yw" id="gvQ-Ey-XNh"/>
             </connections>
         </customObject>
@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="282" height="58"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O8f-Or-SWt">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O8f-Or-SWt">
                     <rect key="frame" x="18" y="21" width="71" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="67" id="h3E-Zk-o3Z"/>
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vfg-c5-0Yw" customClass="GSSteppingTextField">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vfg-c5-0Yw">
                     <rect key="frame" x="102" y="18" width="160" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="19c-la-cXO">
                         <font key="font" metaFont="system"/>
